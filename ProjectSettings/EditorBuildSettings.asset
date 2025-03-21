@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/StrawLevel1.unity
+    guid: 73d6c664406b85540a43f10e0e5bf22b
+  - enabled: 1
+    path: Assets/Scenes/StrawLevel2.unity
+    guid: 4de92e346c28e4942b8a1fca928d0fef
+  - enabled: 1
+    path: Assets/Scenes/TurtleLevel1.unity
+    guid: 961f897f9ce95cf4cb09dc3f0b521024
+  - enabled: 1
+    path: Assets/Scenes/TurtleLevel2.unity
+    guid: d1a2ce0089af85447bc83b57e017d5af
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
