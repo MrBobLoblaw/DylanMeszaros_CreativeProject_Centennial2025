@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 slopeNormal;
     public LayerMask groundLayer;
 
+    [Header("Animator")]
+    public CharacterAnimator character;
+
 
     void Start()
     {
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("MoveEvent");
     }
 
-    public void OnJump(InputAction.CallbackContext context) // Handles jump input
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && isGrounded)
         {
@@ -76,6 +79,19 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
+
+        if (character)
+        {
+            float movementSum = Mathf.Abs(movement.x) + Mathf.Abs(movement.y) + Mathf.Abs(movement.z);
+            if (movementSum > 0.1f)
+            {
+                character.SetCharacterState(CharacterState.Walking);
+            }
+            else
+            {
+                character.SetCharacterState(CharacterState.Idle);
+            }
+        }
     }
 
     bool OnSlope()
