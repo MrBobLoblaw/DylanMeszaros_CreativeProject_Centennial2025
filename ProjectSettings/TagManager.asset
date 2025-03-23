@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - EndSpot
   - SpeedBooster
+  - DropWife
+  - DropKids
+  - DropStraw
   layers:
   - Default
   - TransparentFX
