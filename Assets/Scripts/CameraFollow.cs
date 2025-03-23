@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Settings")]
     public bool transitionCamera;
+    public Vector3 rotationOffset = Vector3.zero; // Example: (0, 90, 0) for right-facing
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +34,7 @@ public class CameraFollow : MonoBehaviour
 
             // rotation presets
             Vector3 targetDirection = target.position - transform.position;
-            targetRotation = Quaternion.LookRotation(targetDirection);
+            targetRotation = Quaternion.LookRotation(targetDirection) * Quaternion.Euler(rotationOffset);
 
             if (transitionCamera)
             {

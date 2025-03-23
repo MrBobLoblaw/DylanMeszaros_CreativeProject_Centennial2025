@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 lastDirection = Vector3.forward;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
+    public bool invert;
+    public bool forwardOnly;
+    private bool forceForward;
 
     [Header("Jumping")]
     public float jumpForce = 5f;
@@ -36,6 +40,21 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+
+        if (invert)
+        {
+            float movetemp = move.x;
+            move.x = move.y;
+            move.y = movetemp;
+        }
+        if (forwardOnly)
+        {
+            move.x = 0;
+            if (move.y < 0)
+            {
+                move.y = 0;
+            }
+        }
         //Debug.Log("MoveEvent");
     }
 
@@ -70,6 +89,10 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
+        if (forceForward)
+        {
+            move.y = 1;
+        }
         Vector3 movement = new Vector3(move.x, 0f, move.y).normalized * speed;
 
         // Check if player is on a slope
@@ -112,5 +135,14 @@ public class PlayerController : MonoBehaviour
     private void CheckGrounded()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.15f, groundLayer);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpeedBooster")) // Ensure the colliding object is the player
+        {
+            forceForward = true;
+            speed *= 2;
+        }
     }
 }
