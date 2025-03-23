@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [Header("Animator")]
     public CharacterAnimator character;
 
+    public MessageManager messageManager;
+
 
     void Start()
     {
@@ -141,8 +143,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("SpeedBooster")) // Ensure the colliding object is the player
         {
+            if (messageManager != null)
+            {
+                messageManager.ShowMessage("[Father] STOP!!!!!", false, false, 1f);
+            }
+
             forceForward = true;
-            speed *= 2;
+            speed *= 1.7f;
         }
     }
 }
