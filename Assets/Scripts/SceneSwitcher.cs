@@ -29,7 +29,7 @@ public class SceneSwitcher : MonoBehaviour
             }
             else if (sceneName == "TurtleLevel2")
             {
-                messageManager.ShowMessage("...an upsettling end... ... A father unable to make it back to his children, unable to be there was his wife, unable to live a life for his loved ones... ...All because a straw was dumped into the ocean...", true, true, 20f);
+                messageManager.ShowMessage("...an upsettling end... ... A father unable to make it back to his children, unable to be there for his wife, unable to live a life for his loved ones... ...All because a straw was dumped into the ocean...", true, true, 20f);
             }
             Debug.Log("[EVENT][SWITCHING LEVEL TO<" + sceneToLoad + ">]");
         }
